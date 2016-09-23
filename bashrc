@@ -94,8 +94,16 @@ export EDITOR=nvim
 # shell color
 export CLICOLOR=1
 
+# Setup XDG_DATA_DIRS
+if [ -d "$HOME/.linuxbrew/share" ]; then
+    export XDG_DATA_DIRS="/home/yromanenko/.linuxbrew/share:$XDG_DATA_DIRS"
+fi
 
 # set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.linuxbrew/sbin" ] ; then
+    PATH="$HOME/.linuxbrew/sbin:$PATH"
+fi
+
 if [ -d "$HOME/.linuxbrew/bin" ] ; then
     PATH="$HOME/.linuxbrew/bin:$PATH"
 fi
