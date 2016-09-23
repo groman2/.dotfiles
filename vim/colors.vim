@@ -3,6 +3,7 @@ let &t_Co=256
 let g:base16_shell_path=$HOME.'/.vim/scripts/base16-shell/scripts'
 
 let s:colors = [
+      \ 'happy_hacking',
       \ 'gruvbox',
       \ 'hybrid',
       \ ]
@@ -73,7 +74,7 @@ else
 endif
 
 try
-  colorscheme gruvbox
+  colorscheme happy_hacking
 catch
   colorscheme evening
 endtry
