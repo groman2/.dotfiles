@@ -1,0 +1,20 @@
+cdhist() {
+    local length
+    local CD_HISTORY_SIZE
+
+    CD_HISTORY_SIZE=16
+    length=${#DIRSTACK[@]}
+   
+    if [ $# -eq 0 ] || [ "$1" = "-" ]; then
+        builtin cd "$@" || return 1
+        pushd -n $OLDPWD > /dev/null
+    else
+        pushd "$@" > /dev/null || return 1
+    fi
+
+    if [ $length -ge $CD_HISTORY_SIZE ]; then
+        popd -n -0 > /dev/null
+    fi
+}
+alias dirs='dirs -v'
+alias cd='cdhist'

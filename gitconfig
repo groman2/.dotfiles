@@ -1,0 +1,49 @@
+[user]
+	email = yuriy@lytro.com
+	name = Yuriy Romanenko
+[merge]
+	tool = p4merge
+	keepBackup = false
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "p4merge"]
+	cmd = /usr/local/bin/p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
+[diff]
+	tool = p4merge
+[difftool]
+	prompt = false
+[difftool "p4merge"]
+	cmd = /usr/local/bin/p4merge "$LOCAL" "$REMOTE"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
+[status]
+    submodulesummary = true
+[push]
+	default = simple
+[http]
+	sslVerify = true
+[rerere]
+    enabled = true
+[color]
+    ui = auto
+[alias]
+	co = checkout
+	lol = log --oneline --decorate --graph
+	pfj = "!bash -c \"for I in $*; do git push -f \\$I $(git rev-parse --abbrev-ref HEAD) & done; wait\""
+    moostash = "!git-moostash.sh"
+    da = difftool -y --dir-diff
+    df = difftool -y
+    #dc = "!bash -c \"diff --unified=1 --label $1 <(git log $1 | git-ls-changes hash=no num=no) --label $2 <(git log $2 | git-ls-changes hash=no num=no)\" -"
+    dc = "!bash -c \"diff --unified=1 --label $1 <(git log $1 | git-ls-changes hash=no num=no id=yes) --label $2 <(git log $2 | git-ls-changes hash=no num=no id=yes)\" -"
+    #gdc = "!bash -c \"meld --label=$1 <(git log $1 | git-ls-changes hash=no num=no) --label=$2 <(git log $2 | git-ls-changes hash=no num=no)\" -"
+    gdc = "!bash -c \"meld --label=$1 <(git log $1 | git-ls-changes hash=no num=no id=yes) --label=$2 <(git log $2 | git-ls-changes hash=no num=no id=yes)\" -"
+    su = "!f() { git rev-parse --show-toplevel ; }; cd `f`; git submodule update --init --recursive"
+    sur = "!f() { git rev-parse --show-toplevel ; }; cd `f`; git submodule foreach 'git su'; git remote update; git submodule update --init --recursive"
+    su-force = "!f() { git rev-parse --show-toplevel ; }; cd `f`; git submodule foreach 'git su-force'; git remote update; git submodule update --init --recursive --force"
+    remote-branches = "!bash -c \"git branch -a | grep remotes | cut -d '/' -f 2-\""
+    fix = "!bash -c \"b() { git rev-parse --abbrev-ref --symbolic-full-name @{u} || echo origin/master ; }; git rebase -i --autosquash `b`\""
