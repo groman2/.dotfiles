@@ -37,7 +37,7 @@ done
 if [[ $PLATFORM == *"linux"* ]];
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
    PATH="$HOME/.linuxbrew/bin:$PATH"
-elif [[ $PLATFORM == *"darwin"* ]];
+elif [[ $PLATFORM == *"darwin"* ]]; then
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
    echo Could not figure out what platform this is: $PLATFORM
