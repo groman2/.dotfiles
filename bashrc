@@ -140,3 +140,6 @@ eval "$(fasd --init auto)"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Python startupt
+export PYTHONSTARTUP=$HOME/.pythonrc

@@ -11,6 +11,7 @@ ln -vsf $dir/profile ~/.profile
 ln -vsf $dir/inputrc ~/.inputrc
 ln -vsf $dir/bashrc ~/.bashrc
 ln -vsf $dir/gitignore ~/.config/git/ignore
+ln -vsf $dir/pythonrc ~/.pythonrc
 for x in $dir/bashrc.*; do
     ln -vsf $x ~/.$(basename $x)
 done
