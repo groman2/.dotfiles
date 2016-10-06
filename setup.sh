@@ -52,9 +52,14 @@ else
    exit 1
 fi
 
-if ! $(which g++) && ! (which clang++); then
-  brew install gcc
+# Nope, bad idea
+#if ! $(which g++) && ! (which clang++); then
+#  brew install gcc
+#fi
+if ! which make || ! which c++; then
+  echo Can't install neovim and other brew packages because basic make/c++ packages are not installed
 fi
+
 # install nvim
 brew install neovim/neovim/neovim
 
