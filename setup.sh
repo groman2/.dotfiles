@@ -1,6 +1,9 @@
 #!/bin/bash
 
-set -x -e
+# set -x -e
+
+# Running with -x makes it hard to tell what's going on
+set -e
 
 if [[ -z $HOSTTYPE ]]; then
    HOSTTYPE=unknown
@@ -35,10 +38,14 @@ done
 # OSX: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # linux:
 if [[ $PLATFORM == *"linux"* ]]; then
-   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+   if [ ! -e $HOME/.linuxbrew/bin/brew ]; then
+     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+   fi
    PATH="$HOME/.linuxbrew/bin:$PATH"
 elif [[ $PLATFORM == *"darwin"* ]]; then
-   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   if [ ! -e /usr/local/bin/brew ]; then
+     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   fi
 else
    echo Could not figure out what platform this is: $PLATFORM
    echo Exiting before bad things happen
