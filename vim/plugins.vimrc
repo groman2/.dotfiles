@@ -84,6 +84,9 @@ call plug#begin('~/.vim/plugged')
   " Add emacs/bash/cocoa key bindings to vim, in insert and command-line modes.
   Plug 'maxbrunsfeld/vim-emacs-bindings'
 
+  " Vim-bookmarks
+  Plug 'MattesGroeger/vim-bookmarks'
+
 " }}}
 
 " Automatic Helpers {{{
