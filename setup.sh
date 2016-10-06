@@ -34,7 +34,7 @@ done
 # install brew of some kind
 # OSX: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # linux:
-if [[ $PLATFORM == *"linux"* ]];
+if [[ $PLATFORM == *"linux"* ]]; then
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
    PATH="$HOME/.linuxbrew/bin:$PATH"
 elif [[ $PLATFORM == *"darwin"* ]]; then
