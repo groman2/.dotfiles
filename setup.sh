@@ -61,7 +61,11 @@ brew install ag
 brew install jq
 brew install aria2
 brew install bash-git-prompt
+brew install numpy
+brew install scipy
+brew install matplotlib
 
+pip install jinja2 yaml editdistance pycrypt ipython sympy rlcompleter
 #brew tap universal-ctags/universal-ctags
 #brew install universal-ctags/universal-ctags/universal-ctags
 
