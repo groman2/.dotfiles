@@ -2,6 +2,16 @@
 
 set -x -e
 
+if [[ -z $HOSTTYPE ]]; then
+   HOSTTYPE=unknown
+fi
+
+if [[ $OSTYPE == *"linux"* ]]; then
+    PLATFORM=linux.$HOSTTYPE
+elif [[ $OSTYPE == *"darwin"* ]]; then
+    PLATFORM=darwin.$HOSTTYPE
+fi
+
 # get directory this script is in
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

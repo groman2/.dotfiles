@@ -2,6 +2,16 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+if [[ -z $HOSTTYPE ]]; then
+   HOSTTYPE=unknown
+fi
+
+if [[ $OSTYPE == *"linux"* ]]; then
+    PLATFORM=linux.$HOSTTYPE
+elif [[ $OSTYPE == *"darwin"* ]]; then
+    PLATFORM=darwin.$HOSTTYPE
+fi
+
 # Switch iterm2 profile to remote
 if [ "$TERM" = "xterm-256color-iterm2" ]; then
     export TERM=xterm-256color
