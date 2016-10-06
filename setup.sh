@@ -12,6 +12,8 @@ elif [[ $OSTYPE == *"darwin"* ]]; then
     PLATFORM=darwin.$HOSTTYPE
 fi
 
+
+
 # get directory this script is in
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -21,6 +23,7 @@ ln -vsf $dir/profile ~/.profile
 ln -vsf $dir/inputrc ~/.inputrc
 ln -vsf $dir/bashrc ~/.bashrc
 ln -vsf $dir/vimcatrc ~/.vimcatrc
+mkdir -p ~/.config/git
 ln -vsf $dir/gitignore ~/.config/git/ignore
 ln -vsf $dir/pythonrc ~/.pythonrc
 for x in $dir/bashrc.*; do
