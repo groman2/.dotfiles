@@ -31,8 +31,16 @@ done
 # install brew of some kind
 # OSX: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # linux:
-#ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-PATH="$HOME/.linuxbrew/bin:$PATH"
+if [[ $PLATFORM == *"linux"* ]];
+   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+   PATH="$HOME/.linuxbrew/bin:$PATH"
+elif [[ $PLATFORM == *"darwin"* ]];
+   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+   echo Could not figure out what platform this is: $PLATFORM
+   echo Exiting before bad things happen
+   exit 1
+fi
 
 # install nvim
 brew install neovim/neovim/neovim
