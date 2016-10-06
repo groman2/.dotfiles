@@ -1,0 +1,3 @@
+#!/bin/bash
+NPROCS=$(nproc)
+who | cut -d ' ' -f 1 | sort -u | xargs -n1 -I{} -- bash -c "echo -n '{} ' ; top -b -n 1 -u {} | awk 'NR>7 { sum += \$9; } END { printf(\"%f\n\", sum ); }'" | sort -r -n -k 2 | awk "{ cputime = strtonum(\$2)/$(nproc); printf(\"%-40s %5.2f%%\n\", \$1, cputime); total += cputime; } END { printf(\"\n\"); printf(\"%-40s %5.2f%%\n\", \"-IDLE-\", 100.0 - total); }" 

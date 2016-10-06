@@ -1,0 +1,10 @@
+#!/bin/bash
+source tservers
+
+PWD=$(pwd)
+for B in ${SERVERS[@]};
+do
+   ssh $B "cd $PWD; git $*" &
+done
+wait
+

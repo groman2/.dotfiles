@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sed -i 's/\t/    /g' $*
+sed -i 's/[[:space:]]*$//' $*
+perl -pi -e 'chomp if eof' $*

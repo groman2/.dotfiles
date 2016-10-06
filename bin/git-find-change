@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SRCH=$1
+shift
+while (( "$#" )); do
+    SRCH="$SRCH\|$1"
+    shift
+done
+git log --all | git-ls-changes | grep $SRCH

@@ -1,0 +1,24 @@
+#!/usr/bin/env ipython -i
+
+import os
+import sys
+import code
+import numpy as np
+import scipy
+import sympy
+
+filename = os.environ.get('PYTHONSTARTUP')
+if filename and os.path.isfile(filename):
+    with open(filename) as fobj:
+        exec(fobj)
+
+from math import *
+
+
+def clog2(val):
+    return int(ceil(log(val)/log(2.0)))
+
+if len(sys.argv) > 1:
+    print eval(' '.join(sys.argv[1:]))
+else:
+    code.interact(local=globals())

@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh back bin/push

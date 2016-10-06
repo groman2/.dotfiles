@@ -1,0 +1,45 @@
+#!/bin/bash
+FOLDER=.
+while [[ ! -d $FOLDER/.git ]];
+do
+    if [[ $(readlink -e $FOLDER/..) != $(readlink -e $FOLDER) ]];
+    then
+        FOLDER=$FOLDER/..
+    else
+        break
+    fi
+done
+
+if [[ -d $FOLDER/.git ]];
+then
+    pushd $FOLDER/.git/hooks
+    if [[ $(basename $0) == "pre-commit-enable" ]]; 
+    then
+        enable="1"
+    elif [[ $(basename $0) == "pre-commit-disable" ]]; 
+    then
+        enable="0"
+    else
+        if [[ -e "pre-commit.disabled" ]]; 
+        then
+            enable="1"
+        else
+            enable="0"
+        fi
+    fi
+
+    if [[ $enable == "1" && -e "pre-commit.disabled" ]]; 
+    then
+        echo "Re-enabling pre-commit hook"
+        mv pre-commit.disabled pre-commit
+    elif [[ $enable == "0" && -e "pre-commit" ]]; 
+    then
+        echo "Disabling pre-commit hook"
+        mv pre-commit pre-commit.disabled
+    else
+        echo Failed at everything...
+    fi  
+    popd
+else
+    echo .git folder not found
+fi

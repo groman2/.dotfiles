@@ -1,0 +1,2 @@
+#!/bin/bash
+minicom -c on -D /dev/ttyUSB2

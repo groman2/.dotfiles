@@ -1,0 +1,5 @@
+#!/bin/bash
+for F in $*; do
+    perl -pi.bak1 -e "s/\s+$/\n/g" $F
+    perl -pi.bak2 -e "s/\t/    /g" $F
+done

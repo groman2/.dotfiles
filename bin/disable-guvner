@@ -1,0 +1,5 @@
+#!/bin/bash
+for I in /sys/devices/system/cpu/cpu[0-9]*; do
+	echo performance > $I/cpufreq/scaling_governor
+	echo Set $I for performance
+done

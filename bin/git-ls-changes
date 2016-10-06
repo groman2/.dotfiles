@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Since you can't shebang --re-interval + -f, here's a hack
+read -r -d '' AWK_CMD <<'EOC'
+    function print_commit()
+    {
+        if(length(cur_commit) > 0) {
+            if(num != "no") {
+                printf("%-5d    ", count);
+            }
+            if(hash != "no") {
+                printf("%8s    ", substr(cur_commit, 1, 8));
+            }
+            if(id != "no") {
+                printf("%9s    ", substr(cur_change_id, 1, 9));
+            }
+            printf("%s\n", cur_commit_desc);
+        }
+    }
+
+    BEGIN {
+        count = 0;
+    }
+    /^commit [0-9a-f]{4}/  {
+        print_commit();
+        cur_commit = $2;
+        cur_change_id = "??????????????";
+        cur_commit_desc = "";
+        count = count + 1;
+    }
+    /^    .+/ {
+        if(length(cur_commit_desc) == 0) {
+            cur_commit_desc = substr($0, 5, length($0) - 4);
+        }
+    }
+    /^    Change-Id: I[0-9a-f]{40}/ {
+        cur_change_id = $2;
+    }
+    END {
+        print_commit();
+    }
+EOC
+
+gawk --re-interval -f <(echo -n "$AWK_CMD") $*

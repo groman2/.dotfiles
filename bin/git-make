@@ -1,0 +1,6 @@
+#!/bin/bash
+
+TOP=$(git rev-parse --show-toplevel 2>/dev/null)
+ERR=$?
+if [[ ${ERR} -ne 0 ]] ; then (>&2 echo "err: this command must be run within a git repo (rev-parse result=${ERR})") ; exit ${ERR} ; fi
+make -C "${TOP}" $*

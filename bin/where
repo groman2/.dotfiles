@@ -1,0 +1,29 @@
+#!/bin/bash
+WHERE=${HOME}
+TOT=$(pwd)
+NEWTOT=${TOT}
+GITTREE=0
+while true; do
+    GITTOT=$(cd ${NEWTOT}; git rev-parse --show-toplevel 2>/dev/null)
+    if [ "$?" != "0" ]; then
+        break
+    fi
+    GITTREE=$(( ${GITTREE}+1 ))
+    NEWTOT=${GITTOT}/..
+    if [ "$(realpath ${NEWTOT})" = "$(realpath ${TOT})" ]; then
+        break
+    fi
+    TOT=${GITTOT}
+done
+
+if [ "$GITTREE" != "0" ]; then
+    WHERE=${TOT}
+fi
+
+ARGS=$*
+
+if [ "x$ARGS" = "x" ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+find ${WHERE} -type f | grep "$ARGS\$"

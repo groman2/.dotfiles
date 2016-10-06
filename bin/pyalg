@@ -1,0 +1,24 @@
+#!/usr/bin/python
+
+import os
+import sys
+import code
+import numpy as np
+import scipy
+import sympy
+import string
+
+filename = os.environ.get('PYTHONSTARTUP')
+if filename and os.path.isfile(filename):
+    with open(filename) as fobj:
+       startup_file = fobj.read()
+    exec(startup_file)
+
+from sympy import *
+for c in string.ascii_lowercase + string.ascii_uppercase:
+    globals()[c] = S(c)
+
+if len(sys.argv) > 1:
+    print eval(' '.join(sys.argv[1:]))
+else:
+    code.interact(local=globals())

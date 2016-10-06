@@ -1,0 +1,2 @@
+#!/bin/bash
+find . -name "*.bak1" -or -name "*.bak2"

@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+
+while(<>) 
+{
+    s/^#?\s+((modified|deleted|deleted by us|deleted by them|both modified|added by us|added by them|new file):\s+)?//g; $deleted = ($2 eq "deleted"); s/\n//g; 
+    print "$_ " if (-e || $deleted);    
+}
