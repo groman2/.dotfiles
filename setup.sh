@@ -45,16 +45,11 @@ else
    exit 1
 fi
 
+if ! $(which g++) && ! (which clang++); then
+  brew install g++
+fi
 # install nvim
 brew install neovim/neovim/neovim
-
-# verify this works when there's already shit here...
-if [ -d ~/.config/nvim ]; then
-    mv ~/.config/nvim ~/.config/nvim.$(date +%s)
-fi
-mkdir -p ~/.config/
-
-ln -s $dir/vim ~/.config/nvim
 
 # command line utilities
 brew install python
@@ -68,8 +63,18 @@ brew install numpy
 brew install scipy
 brew install matplotlib
 
+
 pip install jinja2 yaml editdistance pycrypt ipython sympy rlcompleter
 #brew tap universal-ctags/universal-ctags
 #brew install universal-ctags/universal-ctags/universal-ctags
 
 #brew install homebrew/dupes/openssh
+
+# verify this works when there's already shit here...
+if [ -d ~/.config/nvim ]; then
+    mv ~/.config/nvim ~/.config/nvim.$(date +%s)
+fi
+mkdir -p ~/.config/
+
+ln -s $dir/vim ~/.config/nvim
+
