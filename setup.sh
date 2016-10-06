@@ -53,7 +53,7 @@ else
 fi
 
 if ! $(which g++) && ! (which clang++); then
-  brew install g++
+  brew install gcc
 fi
 # install nvim
 brew install neovim/neovim/neovim
