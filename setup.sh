@@ -57,7 +57,7 @@ fi
 #  brew install gcc
 #fi
 if ! which make || ! which c++; then
-  echo Can't install neovim and other brew packages because basic make/c++ packages are not installed
+  echo Cannot install neovim and other brew packages because basic make/c++ packages are not installed
 fi
 
 # install nvim
