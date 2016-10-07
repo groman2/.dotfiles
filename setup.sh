@@ -61,9 +61,6 @@ if ! which make || ! which c++; then
   exit 1
 fi
 
-# install nvim
-brew install neovim/neovim/neovim
-
 # command line utilities
 brew install python
 brew install git
@@ -82,6 +79,9 @@ pip install jinja2 yaml editdistance pycrypt ipython sympy rlcompleter
 #brew install universal-ctags/universal-ctags/universal-ctags
 
 #brew install homebrew/dupes/openssh
+
+# install nvim
+brew install neovim/neovim/neovim
 
 # verify this works when there's already shit here...
 if [ -d ~/.config/nvim ]; then
