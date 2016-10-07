@@ -69,12 +69,12 @@ brew install ag
 brew install jq
 brew install aria2
 brew install bash-git-prompt
-brew install homebrew/python/numpy
-brew install homebrew/python/scipy
-brew install homebrew/python/matplotlib
+#brew install homebrew/python/numpy
+#brew install homebrew/python/scipy
+#brew install homebrew/python/matplotlib
 
 
-pip install jinja2 yaml editdistance pycrypt ipython sympy rlcompleter
+pip install jinja2 yaml editdistance pycrypt ipython sympy rlcompleter numpy scipy matplotlib
 #brew tap universal-ctags/universal-ctags
 #brew install universal-ctags/universal-ctags/universal-ctags
 
