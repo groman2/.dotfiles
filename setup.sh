@@ -74,7 +74,7 @@ brew install bash-git-prompt
 #brew install homebrew/python/matplotlib
 
 
-pip install jinja2 yaml editdistance pycrypt ipython sympy rlcompleter numpy scipy matplotlib
+pip install jinja2 pyyaml editdistance pycrypto ipython sympy rlcompleter3 numpy scipy matplotlib
 #brew tap universal-ctags/universal-ctags
 #brew install universal-ctags/universal-ctags/universal-ctags
 
