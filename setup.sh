@@ -26,6 +26,7 @@ ln -vsf $dir/profile ~/.profile
 ln -vsf $dir/inputrc ~/.inputrc
 ln -vsf $dir/bashrc ~/.bashrc
 ln -vsf $dir/vimcatrc ~/.vimcatrc
+ln -vsf $dir/tmux.conf ~/.tmux.conf
 mkdir -p ~/.config/git
 ln -vsf $dir/gitignore ~/.config/git/ignore
 ln -vsf $dir/pythonrc ~/.pythonrc
