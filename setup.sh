@@ -74,12 +74,6 @@ brew install bash-git-prompt
 #brew install homebrew/python/matplotlib
 
 
-pip install jinja2 pyyaml editdistance pycrypto ipython sympy rlcompleter3 numpy scipy matplotlib
-#brew tap universal-ctags/universal-ctags
-#brew install universal-ctags/universal-ctags/universal-ctags
-
-#brew install homebrew/dupes/openssh
-
 # install nvim
 brew install neovim/neovim/neovim
 
@@ -91,3 +85,9 @@ mkdir -p ~/.config/
 
 ln -s $dir/vim ~/.config/nvim
 
+
+pip install jinja2 pyyaml editdistance pycrypto ipython sympy rlcompleter3 numpy scipy matplotlib
+#brew tap universal-ctags/universal-ctags
+#brew install universal-ctags/universal-ctags/universal-ctags
+
+#brew install homebrew/dupes/openssh
