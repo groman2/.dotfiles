@@ -20,6 +20,8 @@ fi
 # get directory this script is in
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+git -C $dir submodule update --init --recursive
+
 # link up git dotfiles to home dotfiles
 ln -sf $dir/gitconfig ~/.gitconfig
 ln -vsf $dir/profile ~/.profile
