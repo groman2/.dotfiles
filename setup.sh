@@ -28,7 +28,7 @@ ln -vsf $dir/bashrc ~/.bashrc
 ln -vsf $dir/vimcatrc ~/.vimcatrc
 ln -vsf $dir/tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmux
-ln -vsf $dir/tmux-plugins ~/.tmux/plugins
+ln -vsfT $dir/tmux-plugins ~/.tmux/plugins
 mkdir -p ~/.config/git
 ln -vsf $dir/gitignore ~/.config/git/ignore
 ln -vsf $dir/pythonrc ~/.pythonrc

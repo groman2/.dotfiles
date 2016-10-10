@@ -22,7 +22,7 @@ set keymap vi-command
 set keymap vi-insert
 # these are for vi-insert mode
 #"\e[A": history-search-backward
-"\e[A": reverse-search-history
+"\e[A": history-search-backward
 "\e[B": history-search-forward
 
 $endif
