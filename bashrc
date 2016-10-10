@@ -94,8 +94,10 @@ do
     fi
 done
 
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
+if [[ $PLATFORM == *"linux"* ]]; then
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
+fi
 
 export MANPATH=":$HOME/bin"
 

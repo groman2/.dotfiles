@@ -27,6 +27,8 @@ ln -vsf $dir/inputrc ~/.inputrc
 ln -vsf $dir/bashrc ~/.bashrc
 ln -vsf $dir/vimcatrc ~/.vimcatrc
 ln -vsf $dir/tmux.conf ~/.tmux.conf
+mkdir -p ~/.tmux
+ln -vsf $dir/tmux-plugins ~/.tmux/plugins
 mkdir -p ~/.config/git
 ln -vsf $dir/gitignore ~/.config/git/ignore
 ln -vsf $dir/pythonrc ~/.pythonrc
@@ -70,6 +72,10 @@ brew install ag
 brew install jq
 brew install aria2
 brew install bash-git-prompt
+brew install tmux
+if [[ $PLATFORM == *"darwin"* ]]; then
+  brew install reattach-to-user-namespace
+fi
 #brew install homebrew/python/numpy
 #brew install homebrew/python/scipy
 #brew install homebrew/python/matplotlib
