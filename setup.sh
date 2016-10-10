@@ -73,6 +73,7 @@ brew install jq
 brew install aria2
 brew install bash-git-prompt
 brew install tmux
+# FZF is installed through nvim plugin manager: brew install fzf
 if [[ $PLATFORM == *"darwin"* ]]; then
   brew install reattach-to-user-namespace
 fi

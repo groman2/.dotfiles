@@ -1,13 +1,38 @@
 # Editing mode (keep default, use set -o vi)
 # set editing-mode vi
-# Show sane indicators on \m in PS1
+
+# Tab-completion
+set show-all-if-ambiguous on
+
+
+$if mode=vi
 set show-mode-in-prompt on
 #set vi-ins-mode-string +
 #set vi-cmd-mode-string :
 
 set vi-ins-mode-string \1\e[34;1m\2[i]\1\e[0m\2
 set vi-cmd-mode-string \1\e[3b\2\1\e[44;1m\2[C]\1\e[0m\2
+
+
+# History search
+set keymap vi-command
+# these are for vi-command mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+set keymap vi-insert
+# these are for vi-insert mode
+#"\e[A": history-search-backward
+"\e[A": reverse-search-history
+"\e[B": history-search-forward
+
+$endif
+
+$if mode=emacs
+
+# History search  
 # arrow up
 "\e[A": history-search-backward
 # arrow down
 "\e[B": history-search-forward
+
+$endif
