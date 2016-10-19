@@ -1,6 +1,8 @@
 [user]
 	email = yuriy@lytro.com
 	name = Yuriy Romanenko
+[init]
+	templatedir = ~/.dotfiles/git_template
 [merge]
 	tool = p4merge
 	keepBackup = false

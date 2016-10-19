@@ -86,14 +86,22 @@ if [[ "${is_bare}" = "false" ]]; then
   set -e
   while read oldrev newrev refname; do
     if [[ "$refname" == "refs/poosh/new" ]]; then
-      ( cd $GIT_WORK_TREE;
-        git checkout -f $newrev 2>/dev/null;
-        git clean -d -f 2>/dev/null;
-        git submodule sync 2>/dev/null;
-        git submodule update --init --recursive 2>/dev/null;
-        git reset --soft HEAD^ 2>/dev/null;
-        git reset HEAD $(git rev-parse --show-toplevel 2>/dev/null)/
-       )
+      if [[ "$GIT_PUSH_OPTION_0" != "lite" ]]; then
+        ( cd $GIT_WORK_TREE;
+          git checkout -f $newrev 2>/dev/null;
+          git clean -d -f 2>/dev/null;
+          git submodule sync 2>/dev/null;
+          git submodule update --init --recursive 2>/dev/null;
+          git reset --soft HEAD^ 2>/dev/null;
+          git reset HEAD $(git rev-parse --show-toplevel 2>/dev/null)/
+        )
+      else
+        ( cd $GIT_WORK_TREE;
+          git checkout -f $newrev 2>/dev/null;
+          git reset --soft HEAD^ 2>/dev/null;
+          git reset HEAD $(git rev-parse --show-toplevel 2>/dev/null)/
+        )
+     fi
     elif [[ "$refname" ==  "${active_branch}" ]]; then
       update_wc $ref
     fi
