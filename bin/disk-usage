@@ -1,4 +1,4 @@
 #!/bin/bash
-UTIL_SCRIPT=$(cat ~/bin/util.awk)
+UTIL_SCRIPT=$(cat $(which util.awk))
 SCRIPT="$UTIL_SCRIPT  { print hr_size(1024.0 * \$1), substr(\$0, index(\$0, \$2)); }"
 du -xs * | sort -nr | gawk "$SCRIPT"
