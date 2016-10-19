@@ -1,4 +1,4 @@
-#!/usr/bin/env ipython -i
+#!/usr/bin/env ipython
 
 import os
 import sys
