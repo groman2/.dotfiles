@@ -27,7 +27,7 @@ ln -sf $dir/gitconfig ~/.gitconfig
 ln -vsf $dir/profile ~/.profile
 ln -vsf $dir/inputrc ~/.inputrc
 ln -vsf $dir/bashrc ~/.bashrc
-ln -vsf $dir/vimcatrc ~/.vimcatrc
+ln -vsf $dir/vimrc ~/.vimrc
 ln -vsf $dir/tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmux
 ln -vsfT $dir/tmux-plugins ~/.tmux/plugins
