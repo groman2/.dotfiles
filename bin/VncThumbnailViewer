@@ -1,0 +1,12 @@
+#!/bin/bash
+
+BINDIR=$(cd $(dirname $(readlink -f "${BASH_SOURCE[0]}")) && pwd)
+JAVA=$(which java)
+
+if [ -f $BINDIR/VncThumbnailViewer.jar ] && [ -x $JAVA ]; then
+  $JAVA -classpath $BINDIR/VncThumbnailViewer.jar VncThumbnailViewer $*
+elif [ ! -x $JAVA ]; then
+  echo Could not find a runnable java executable, try setting JAVA env var
+else
+  echo Could not determine BINDIR: $BINDIR or VncThumbnailViewer.jar not found
+fi
