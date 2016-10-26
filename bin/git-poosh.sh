@@ -41,6 +41,7 @@ else
 fi
 $PRETEND git push -f $DEST HEAD:refs/poosh/new
 
+echo Restoring state... $BACKPTR
 if [[ $(git rev-parse --symbolic-full-name $BACKPTR) != "" ]];
 then
     BACKPTR=$(git rev-parse --symbolic-full-name $BACKPTR 2>/dev/null)
@@ -55,3 +56,4 @@ if [ "$BACKUP_INDEX" != "" ] && [ -f $BACKUP_INDEX ] && [ -e $BACKUP_INDEX ]; th
     cp -f $BACKUP_INDEX $GITDIR/index
     echo Restored index
 fi
+echo State restored
