@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+remote=$1
+shift
+cmds="$@"
+
+ANSI_RED="\033[31m"
+ANSI_GREEN="\033[32m"
+ANSI_RESET="\033[0m"
+
+urls=$(git remote get-url --push --all $remote)
+
+exec_on_remote()
+{
+    local host=$1
+    local repo=$2
+    local subdir=$3
+    ssh $host "cd $repo/$subdir && $cmds" | sed -E "s/^/$host: /g"
+    exit ${PIPESTATUS[0]}
+}
+
+declare -A pids
+declare -A hosts
+declare -A results
+
+for url in $urls; do
+    host=$(echo $url | sed -E 's!^[[:alnum:]]+://!!' | cut -d '/' -f 1)
+    repo=$(echo $url | sed -E 's!^[[:alnum:]]+://!!' | cut -d '/' -f 2-)
+    subdir=$(git rev-parse --show-prefix)
+    exec_on_remote $host $repo $subdir &
+    pids[$url]=$!
+    hosts[$url]=$host
+done
+
+for url in "${!pids[@]}"; do
+    pid=${pids[$url]}
+    host=${hosts[$url]}
+    wait $pid
+    results[$url]=$?
+done
+
+
+for url in "${!pids[@]}"; do
+    host=${hosts[$url]}
+    result=${results[$url]}
+    if [[ "$result" == "0" ]]; then
+        echo -e $host: $ANSI_GREEN Success $ANSI_RESET
+    else
+        echo -e $host: $ANSI_RED Failure $ANSI_RESET
+    fi
+done
