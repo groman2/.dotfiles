@@ -139,6 +139,16 @@ then
     eval $(dircolors -b $HOME/.dircolors)
 fi
 
+if [ -d "$HOME/bin/ec2" ]; then
+  EC2_HOME="$HOME/bin/ec2/ec2-api-tools-1.7.5.1"
+  if [ -d "$EC2_HOME" ]; then
+    PATH="$PATH:$EC2_HOME/bin"
+  fi
+fi
+if [ -e /usr/libexec/java_home ]; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+fi
+
 # Set up the back channel for SSH
 # This overwrites the .ssh/config which apparently doesn't support some sort of "include"
 SSH_HOSTNAME=$(echo $SSH_CLIENT | cut -d ' ' -f 1)
