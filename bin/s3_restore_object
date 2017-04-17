@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+from __future__ import print_function
+import boto3
+import json
+import sys
+import traceback
+
+# Python3 vs Python2 compatibiltiy
+if sys.version_info >= (3, 0):
+    from urllib.parse import urlparse
+else:
+    from urlparse import urlparse
+
+# Default restore tier is 'Bulk'
+restoreTier = 'Bulk'
+
+# Try a bunch of things and then handle the errors the same way,
+# by printing usage and exiting
+try:
+    assert len(sys.argv) > 2     # We expect at least 2 arguments
+    assert int(sys.argv[2]) > 0  # Second argument needs to be a number >0
+    # Parse the URL
+    url = urlparse(sys.argv[1])
+    # Duration as second argument
+    s3days = int(sys.argv[2]) 
+    assert url.scheme == 's3'    # The passed URL is not an 's3://' URL
+    assert len(url.path) > 0     # The passed URL has has an object part
+    assert len(url.netloc) > 0   # THe passed URL has a a bucket part
+    assert url.path[0] == '/'    # Passed object path does not start with '/'
+    s3bucket = url.netloc
+    s3object = url.path[1:]
+    if len(sys.argv) > 3:
+        assert sys.argv[3] in ['Bulk','Standard','Expedited'] # Unknown tier passed
+        restoreTier = sys.argv[3]
+except Exception as e:
+    print("Usage: %s s3://bucketname/objectname <days> [restoreTier='Bulk']" % (sys.argv[0]))
+    print("  where <restoreTier> is one of: Standard, Bulk, Expedited")
+    print("Traceback: %s" % (traceback.format_exc()))
+    exit(1)
+
+# Tell the user what we are doing
+print("Restoring s3://%s/%s for %d days using '%s' restore tier" % (s3bucket, s3object, s3days, restoreTier))
+
+# Get an S3 client from boto
+client = boto3.client('s3')
+
+response = client.restore_object(
+    Bucket=s3bucket,
+    Key=s3object,
+    RestoreRequest={ 'Days': s3days, 'GlacierJobParameters': {'Tier': restoreTier} }
+)
+
+# Pretty print output
+print(json.dumps(response,indent=4))
