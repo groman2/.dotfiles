@@ -113,6 +113,7 @@ if [ -d "$HOME/.linuxbrew/share" ]; then
     export XDG_DATA_DIRS="/home/yromanenko/.linuxbrew/share:$XDG_DATA_DIRS"
 fi
 
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.linuxbrew/sbin" ] ; then
     PATH="$HOME/.linuxbrew/sbin:$PATH"
@@ -122,10 +123,6 @@ if [ -d "$HOME/.linuxbrew/bin" ] ; then
     PATH="$HOME/.linuxbrew/bin:$PATH"
 fi
 
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 if [ -d "$HOME/.dotfiles/bin" ] ; then
     PATH="$HOME/.dotfiles/bin:$PATH"
 fi
@@ -133,6 +130,15 @@ fi
 if [ -d "$HOME/.dotfiles/bin.$PLATFORM" ] ; then
    PATH="$HOME/.dotfiles/bin.$PLATFORM:$PATH"
 fi
+
+if [ -d "$HOME/local/bin" ] ; then
+   PATH="$HOME/local/bin:$PATH"
+fi
+
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
 
 if [ -f "$HOME/.dircolors" ]
 then
