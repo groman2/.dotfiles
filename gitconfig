@@ -1,28 +1,9 @@
-[user]
-    email = yuriy@lytro.com
-    name = Yuriy Romanenko
+[include]
+    path = ~/.gitconfig.local
+[include]
+    path = ~/.gitconfig.merge
 [init]
     templatedir = ~/.dotfiles/git_template
-[merge]
-    tool = p4merge
-    keepBackup = false
-[mergetool]
-    prompt = false
-    keepBackup = false
-[mergetool "p4merge"]
-    cmd = /usr/local/bin/p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-    keepTemporaries = false
-    trustExitCode = false
-    keepBackup = false
-[diff]
-    tool = p4merge
-[difftool]
-    prompt = false
-[difftool "p4merge"]
-    cmd = /usr/local/bin/p4merge "$LOCAL" "$REMOTE"
-    keepTemporaries = false
-    trustExitCode = false
-    keepBackup = false
 [status]
     submodulesummary = true
 [push]

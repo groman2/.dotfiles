@@ -119,3 +119,26 @@ let g:neomake_list_height = 5
 
 set listchars=tab:>-
 set list
+
+function! s:my_custom_syntax()
+  highlight MyOverLength ctermbg=darkred ctermfg=white
+  match MyOverLength /\%81v.\+/
+endfunction
+
+
+" Google specific settings
+if !empty(glob('/usr/share/vim/google/google.vim'))
+  let g:google_vim = 1
+  source /usr/share/vim/google/google.vim
+endif
+if !empty(glob('~/.vim/google/google.vim'))
+  let g:google_vim = 1
+  source ~/.vim/google/google.vim
+endif
+
+if exists('g:google_vim') && g:google_vim == 1
+  set nocompatible
+  filetype plugin indent on
+  au Syntax * call s:my_custom_syntax()
+  let &colorcolumn=join(range(81,120),",")
+endif
